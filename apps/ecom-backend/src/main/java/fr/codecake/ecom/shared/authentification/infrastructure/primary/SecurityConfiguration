@@ -26,9 +26,9 @@ public class SecurityConfiguration {
             )
             .csrf(AbstractHttpConfigurer::disable) // Désactive la protection CSRF (à utiliser avec précaution)
             .oauth2ResourceServer(oauth2 -> oauth2
-                .jwt(jwt -> jwt.jwtAuthenticationConverter(new CustomJwtAuthenticationConverter())) // Configure le convertisseur JWT personnalisé
+                .jwt(jwt -> jwt.jwtAuthenticationConverter(new KindeJwtAuthenticationConverter())) // Configure le convertisseur JWT personnalisé
             );
-
+     // Retourne la configuration de sécurité construite
         return http.build();
     }
 }

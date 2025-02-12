@@ -1,0 +1,16 @@
+package fr.codecake.ecom.shared.authentication.infrastructure.primary;
+
+public class KindeJwtAuthenticationConverter implements Converter<Jwt, AbstractAuthenticationToken> {
+
+    @Override
+    public AbstractAuthenticationToken convert(@NonNull Jwt source){
+        return new JwtAuthenticationToken(source,
+        Stream.concat(new JwtGrantedAuthoritiesConverter().convert(source).stream(),
+        extractResourceRoles(source).stream()).collect(Collectors.toSet()))
+    }
+    private Collection<? extends GrantedAuthority> extractResourceRoles(Jwt jwt){
+        return authenticatedUser.extractRolesFromToken(jwt).stream()
+        .map(SimpleGrantedAuthority::new)
+        .collect(Collectors.toSet();)
+    }
+}
