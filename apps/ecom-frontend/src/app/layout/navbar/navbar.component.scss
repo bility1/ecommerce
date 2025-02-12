@@ -1,4 +1,20 @@
-.menu-icon{
-    font-size: 1.8rem;
-}
+.navbar {
+    background-color: #87CEEB;  
+// Définir une variable pour la taille de police
+$menu-icon-font-size: 1.8rem;
 
+.menu-icon {
+  font-size: $menu-icon-font-size;
+  transition: font-size 0.3s ease; // Pour une transition fluide
+
+  // Responsivité pour les écrans plus petits
+  @media (max-width: 768px) {
+    font-size: 1.5rem;
+  }
+
+  // Effet de survol pour agrandir l'icône
+  &:hover {
+    font-size: 2rem;
+  }
+}
+}
