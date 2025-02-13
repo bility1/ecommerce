@@ -11,4 +11,3 @@ import { FaIconComponent } from "@fortawesome/angular-fontawesome";
     styleUrl:'./footer.component.scss',
 })
 export class FooterComponent{}
-

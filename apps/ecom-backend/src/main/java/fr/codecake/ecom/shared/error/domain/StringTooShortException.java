@@ -1,3 +1,4 @@
+
 package fr.codecake.ecom.shared.error.domain;
 
 import java.util.Map;

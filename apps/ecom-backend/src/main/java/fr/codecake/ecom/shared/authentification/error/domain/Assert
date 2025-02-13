@@ -1,0 +1,247 @@
+package fr.codecake.ecom.shared.error.domain;
+
+import java.math.BigDecimal;
+import java.time.Instant;
+import java.util.Collection;
+import java.util.Map;
+import java.util.Objects;
+import java.util.stream.Stream;
+
+/**
+ * Classe utilitaire contenant des méthodes d'assertion pour valider différents types de données.
+ * Cette classe empêche l'instanciation.
+ */
+public final class Assert {
+
+  // Constructeur privé pour empêcher l'instanciation de la classe utilitaire
+  private Assert() {}
+
+  /**
+   * Vérifie qu'un objet n'est pas null.
+   * @param field Nom du champ à valider
+   * @param input Valeur à vérifier
+   * @throws MissingMandatoryValueException si l'objet est null
+   */
+  public static void notNull(String field, Object input) {
+    if (input == null) {
+      throw MissingMandatoryValueException.forNullValue(field);
+    }
+  }
+
+  /**
+   * Vérifie qu'une chaîne de caractères n'est pas null et pas vide après suppression des espaces.
+   * @param field Nom du champ
+   * @param input Valeur à vérifier
+   */
+  public static void notBlank(String field, String input) {
+    Assert.field(field, input).notBlank();
+  }
+
+  /**
+   * Vérifie qu'une collection n'est pas null et n'est pas vide.
+   * @param field Nom du champ
+   * @param collection Collection à vérifier
+   */
+  public static void notEmpty(String field, Collection<?> collection) {
+    field(field, collection).notEmpty();
+  }
+
+  /**
+   * Vérifie qu'une map n'est pas null et n'est pas vide.
+   * @param field Nom du champ
+   * @param map Map à vérifier
+   */
+  public static void notEmpty(String field, Map<?, ?> map) {
+    notNull(field, map); // Vérifie que la map n'est pas null
+
+    if (map.isEmpty()) { // Vérifie que la map n'est pas vide
+      throw MissingMandatoryValueException.forEmptyValue(field);
+    }
+  }
+
+  // Méthodes pour récupérer un validateur spécifique à un type de données
+  public static StringAsserter field(String field, String input) {
+    return new StringAsserter(field, input);
+  }
+
+  public static IntegerAsserter field(String field, Integer input) {
+    return new IntegerAsserter(field, input);
+  }
+
+  public static LongAsserter field(String field, Long input) {
+    return new LongAsserter(field, input);
+  }
+
+  public static FloatAsserter field(String field, Float input) {
+    return new FloatAsserter(field, input);
+  }
+
+  public static DoubleAsserter field(String field, Double input) {
+    return new DoubleAsserter(field, input);
+  }
+
+  public static BigDecimalAsserter field(String field, BigDecimal input) {
+    return new BigDecimalAsserter(field, input);
+  }
+
+  public static <T> CollectionAsserter<T> field(String field, Collection<T> input) {
+    return new CollectionAsserter<>(field, input);
+  }
+
+  public static <T> ArrayAsserter<T> field(String field, T[] input) {
+    return new ArrayAsserter<>(field, input);
+  }
+
+  public static InstantAsserter field(String field, Instant input) {
+    return new InstantAsserter(field, input);
+  }
+
+  /**
+   * Classe interne permettant de valider les chaînes de caractères.
+   */
+  public static final class StringAsserter {
+    private final String field;
+    private final String value;
+
+    private StringAsserter(String field, String value) {
+      this.field = field;
+      this.value = value;
+    }
+
+    // Vérifie que la chaîne n'est pas null
+    public StringAsserter notNull() {
+      Assert.notNull(field, value);
+      return this;
+    }
+
+    // Vérifie que la chaîne n'est pas vide après suppression des espaces
+    public StringAsserter notBlank() {
+      notNull();
+      if (value.isBlank()) {
+        throw MissingMandatoryValueException.forBlankValue(field);
+      }
+      return this;
+    }
+
+    // Vérifie que la chaîne a une longueur minimale donnée
+    public StringAsserter minLength(int length) {
+      if (length <= 0 && value == null) {
+        return this;
+      }
+      notNull();
+      if (value.length() < length) {
+        throw StringTooShortException.builder().field(field).value(value).minLength(length).build();
+      }
+      return this;
+    }
+
+    // Vérifie que la chaîne ne dépasse pas une longueur maximale donnée
+    public StringAsserter maxLength(int length) {
+      if (value == null) {
+        return this;
+      }
+      if (value.length() > length) {
+        throw StringTooLongException.builder().field(field).value(value).maxLength(length).build();
+      }
+      return this;
+    }
+  }
+
+  /**
+   * Classe interne permettant de valider les entiers.
+   */
+  public static final class IntegerAsserter {
+    private final String field;
+    private final Integer value;
+
+    private IntegerAsserter(String field, Integer value) {
+      this.field = field;
+      this.value = value;
+    }
+
+    // Vérifie que l'entier est positif ou nul
+    public IntegerAsserter positive() {
+      return min(0);
+    }
+
+    // Vérifie que l'entier est supérieur ou égal à une valeur minimale
+    public IntegerAsserter min(int minValue) {
+      notNull(field, value);
+      if (value < minValue) {
+        throw NumberValueTooLowException.builder().field(field).minValue(String.valueOf(minValue)).value(String.valueOf(value)).build();
+      }
+      return this;
+    }
+
+    // Vérifie que l'entier est inférieur ou égal à une valeur maximale
+    public IntegerAsserter max(int maxValue) {
+      notNull(field, value);
+      if (value > maxValue) {
+        throw NumberValueTooHighException.builder().field(field).maxValue(String.valueOf(maxValue)).value(String.valueOf(value)).build();
+      }
+      return this;
+    }
+  }
+
+  /**
+   * Classe interne permettant de valider les nombres flottants.
+   */
+  public static final class FloatAsserter {
+    private final String field;
+    private final Float value;
+
+    private FloatAsserter(String field, Float value) {
+      this.field = field;
+      this.value = value;
+    }
+
+    // Vérifie que le nombre est positif ou nul
+    public FloatAsserter positive() {
+      return min(0);
+    }
+
+    // Vérifie que le nombre est strictement positif
+    public FloatAsserter strictlyPositive() {
+      return over(0);
+    }
+
+    // Vérifie que le nombre est supérieur ou égal à une valeur minimale
+    public FloatAsserter min(float minValue) {
+      notNull(field, value);
+      if (value < minValue) {
+        throw tooLow(minValue);
+      }
+      return this;
+    }
+
+    // Vérifie que le nombre est strictement supérieur à une valeur donnée
+    public FloatAsserter over(float floor) {
+      notNull(field, value);
+      if (value <= floor) {
+        throw tooLow(floor);
+      }
+ 
+      return this;
+    }
+
+    private NumberValueTooLowException tooLow(float floor) {
+      return NumberValueTooLowException.builder().field(field).minValue(String.valueOf(floor)).value(String.valueOf(value)).build();
+    }
+
+    // Vérifie que le nombre est inférieur ou égal à une valeur maximale
+    public FloatAsserter max(float maxValue) {
+      notNull(field, value);
+      if (value > maxValue) {
+        throw tooHigh(maxValue);
+      }
+      return this;
+    }
+
+    private NumberValueTooHighException tooHigh(float ceil) {
+      return NumberValueTooHighException.builder().field(field).maxValue(String.valueOf(ceil)).value(String.valueOf(value)).build();
+    }
+  }
+
+  // Les autres classes internes suivent le même principe pour valider différents types de données.
+
+}
