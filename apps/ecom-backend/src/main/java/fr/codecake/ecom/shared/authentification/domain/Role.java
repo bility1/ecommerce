@@ -1,4 +1,4 @@
-package fr.codecake.ecom.shared.authentication.domain;
+package fr.codecake.ecom.shared.authentification.domain;
 
 // Importation des classes nécessaires
 import fr.codecake.ecom.shared.error.domain.Assert;//Importe la classe Assert, utilisée pour valider que les valeurs ne sont pas vides ou nulles.
@@ -35,7 +35,7 @@ public enum Role {
     La valeur est le rôle lui-même (Function.identity()). */
 
     return Stream.of(values()) // Transforme l'énumération en flux
-            .collect(Collectors.toUnmodifiableMap(Role::key, Function.identity())); // Associe chaque rôle à sa clé
+      .collect(Collectors.toUnmodifiableMap(Role::key, Function.identity())); // Associe chaque rôle à sa clé
   }
 
   // Génère une clé unique pour chaque rôle (ex: ROLE_ADMIN)

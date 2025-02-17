@@ -1,4 +1,4 @@
-package fr.codecake.ecom.shared.authentication.domain;
+package fr.codecake.ecom.shared.authentification.domain;
 
 // Importation de la classe Assert pour la validation des entrées
 import fr.codecake.ecom.shared.error.domain.Assert;
@@ -36,7 +36,7 @@ public record Username(String username) {
 
   /**
    * Méthode statique permettant de créer un objet `Username` uniquement si la chaîne est valide.
-   * 
+   *
    * @param username La chaîne de caractères représentant le nom d'utilisateur.
    * @return Un `Optional<Username>` contenant l'objet si la chaîne est valide, sinon un `Optional.empty()`.
    */

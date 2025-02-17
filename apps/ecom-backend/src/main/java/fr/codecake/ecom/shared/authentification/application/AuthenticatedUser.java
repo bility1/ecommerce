@@ -1,10 +1,10 @@
-package fr.codecake.ecom.shared.authentication.application;
+package fr.codecake.ecom.shared.authentification.application;
 
 // Importation des classes nécessaires
 import com.nimbusds.jose.shaded.gson.internal.LinkedTreeMap;
-import fr.codecake.ecom.shared.authentication.domain.Role;
-import fr.codecake.ecom.shared.authentication.domain.Roles;
-import fr.codecake.ecom.shared.authentication.domain.Username;
+import fr.codecake.ecom.shared.authentification.domain.Role;
+import fr.codecake.ecom.shared.authentification.domain.Roles;
+import fr.codecake.ecom.shared.authentification.domain.Username;
 import fr.codecake.ecom.shared.error.domain.Assert;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -34,7 +34,7 @@ public final class AuthenticatedUser {
     /**
      * Récupère le nom d'utilisateur de l'utilisateur authentifié.
      *
-     * @return L'objet `Username`
+     * @return L'objet `Username.java`
      * @throws NotAuthenticatedUserException si l'utilisateur n'est pas authentifié.
      */
     public static Username username() {
@@ -44,7 +44,7 @@ public final class AuthenticatedUser {
     /**
      * Récupère le nom d'utilisateur sous forme d'`Optional`.
      *
-     * @return `Optional<Username>` si l'utilisateur est authentifié, sinon `Optional.empty()`
+     * @return `Optional<Username.java>` si l'utilisateur est authentifié, sinon `Optional.empty()`
      */
     public static Optional<Username> optionalUsername() {
         return authentication()
@@ -89,16 +89,16 @@ public final class AuthenticatedUser {
     /**
      * Récupère les rôles de l'utilisateur authentifié.
      *
-     * @return L'objet `Roles`, ou `Roles.EMPTY` si l'utilisateur n'est pas authentifié.
+     * @return L'objet `Roles.java`, ou `Roles.java.EMPTY` si l'utilisateur n'est pas authentifié.
      */
     public static Roles roles() {
         return authentication().map(toRoles()).orElse(Roles.EMPTY);
     }
 
     /**
-     * Convertit un objet `Authentication` en un objet `Roles`.
+     * Convertit un objet `Authentication` en un objet `Roles.java`.
      *
-     * @return Une fonction qui transforme `Authentication` en `Roles`.
+     * @return Une fonction qui transforme `Authentication` en `Roles.java`.
      */
     private static Function<Authentication, Roles> toRoles() {
         return authentication ->

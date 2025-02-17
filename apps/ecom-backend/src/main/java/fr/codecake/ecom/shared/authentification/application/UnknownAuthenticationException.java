@@ -1,4 +1,4 @@
 
-package fr.codecake.ecom.shared.authentication.application;
+package fr.codecake.ecom.shared.authentification.application;
 
 public class UnknownAuthenticationException extends AuthenticationException {}

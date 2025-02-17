@@ -1,4 +1,4 @@
-package fr.codecake.ecom.shared.authentication.domain;
+package fr.codecake.ecom.shared.authentification.domain;
 
 // Importation des classes nécessaires
 import fr.codecake.ecom.shared.error.domain.Assert; //Importe la classe Assert, utilisée pour vérifier que les valeurs ne sont pas nulles.
@@ -46,5 +46,5 @@ public record Roles(Set<Role> roles) {
     public int size() {
         return roles.size();
     }
-    
+
 }
