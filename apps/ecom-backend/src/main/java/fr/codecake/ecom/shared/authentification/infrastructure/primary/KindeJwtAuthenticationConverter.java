@@ -1,5 +1,6 @@
-package fr.codecake.ecom.shared.authentication.infrastructure.primary;
+package fr.codecake.ecom.shared.authentification.infrastructure.primary;
 
+import fr.codecake.ecom.shared.authentification.application.AuthenticatedUser;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.security.authentication.AbstractAuthenticationToken;
 import org.springframework.security.oauth2.jwt.Jwt;
@@ -34,7 +35,7 @@ public class KindeJwtAuthenticationConverter implements Converter<Jwt, AbstractA
 
     // Méthode pour extraire les rôles personnalisés du JWT
     private Collection<? extends GrantedAuthority> extractResourceRoles(Jwt jwt) {
-        return authenticatedUser.extractRolesFromToken(jwt).stream() // Extraction des rôles du token
+        return AuthenticatedUser.extractRolesFromToken(jwt).stream() // Extraction des rôles du token
             .map(SimpleGrantedAuthority::new) // Conversion en objets GrantedAuthority
             .collect(Collectors.toSet()); // Stockage dans un ensemble (Set)
     }

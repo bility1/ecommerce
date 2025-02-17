@@ -1,6 +1,6 @@
 package fr.codecake.ecom.shared.authentification.domain;
 
-// Importation de la classe Assert pour la validation des entrées
+// Importation de la classe Assert.java pour la validation des entrées
 import fr.codecake.ecom.shared.error.domain.Assert;
 // Importation de la classe StringUtils pour manipuler les chaînes de caractères
 import org.apache.commons.lang3.StringUtils;

@@ -1,5 +1,7 @@
 package fr.codecake.ecom.shared.error.domain;
 
+import fr.codecake.ecom.shared.domain.NotBeforeTimeException;
+
 import java.math.BigDecimal;
 import java.time.Instant;
 import java.util.Collection;
@@ -95,7 +97,7 @@ public final class Assert {
    *
    * <pre>
    * <code>
-   * Assert.field("name", name)
+   * Assert.java.field("name", name)
    *   .notBlank()
    *   .maxLength(150);
    * </code>
@@ -120,7 +122,7 @@ public final class Assert {
    *
    * <pre>
    * <code>
-   * Assert.field("age", age)
+   * Assert.java.field("age", age)
    *   .min(0)
    *   .max(150);
    * </code>
@@ -145,7 +147,7 @@ public final class Assert {
    *
    * <pre>
    * <code>
-   * Assert.field("duration", duration)
+   * Assert.java.field("duration", duration)
    *   .min(100)
    *   .max(500_000);
    * </code>
@@ -170,7 +172,7 @@ public final class Assert {
    *
    * <pre>
    * <code>
-   * Assert.field("rate", rate)
+   * Assert.java.field("rate", rate)
    *   .min(0)
    *   .max(1);
    * </code>
@@ -195,7 +197,7 @@ public final class Assert {
    *
    * <pre>
    * <code>
-   * Assert.field("rate", rate)
+   * Assert.java.field("rate", rate)
    *   .min(0)
    *   .max(1);
    * </code>
@@ -220,7 +222,7 @@ public final class Assert {
    *
    * <pre>
    * <code>
-   * Assert.field("rate", rate)
+   * Assert.java.field("rate", rate)
    *   .min(0)
    *   .max(1);
    * </code>
@@ -245,7 +247,7 @@ public final class Assert {
    *
    * <pre>
    * <code>
-   * Assert.field("name", name)
+   * Assert.java.field("name", name)
    *  .notEmpty()
    *  .maxSize(150);
    * </code>
@@ -270,7 +272,7 @@ public final class Assert {
    *
    * <pre>
    * <code>
-   * Assert.field("name", name)
+   * Assert.java.field("name", name)
    *  .notEmpty()
    *  .maxSize(150);
    * </code>
@@ -295,7 +297,7 @@ public final class Assert {
    *
    * <pre>
    * <code>
-   * Assert.field("date", date)
+   * Assert.java.field("date", date)
    *   .inPast()
    *   .after(otherDate);
    * </code>
@@ -1267,7 +1269,7 @@ public final class Assert {
      * @return The current asserter
      * @throws MissingMandatoryValueException
      *           if the input value is null
-     * @throws NotBeforeTimeException
+     * @throws fr.codecake.ecom.shared.domain.NotBeforeTimeException
      *           if the input instant is in future
      */
     public InstantAsserter inPast() {
@@ -1282,7 +1284,7 @@ public final class Assert {
      * @return The current asserter
      * @throws MissingMandatoryValueException
      *           if input or other are null
-     * @throws NotBeforeTimeException
+     * @throws fr.codecake.ecom.shared.domain.NotBeforeTimeException
      *           if the input instant is not before the other instant
      */
     public InstantAsserter before(Instant other) {
@@ -1290,7 +1292,7 @@ public final class Assert {
       Assert.notNull(OTHER_FIELD_NAME, other);
 
       if (value.compareTo(other) >= 0) {
-        throw NotBeforeTimeException.strictlyNotBefore().value(value).field(field).other(other);
+        throw fr.codecake.ecom.shared.domain.NotBeforeTimeException.strictlyNotBefore().value(value).field(field).other(other);
       }
 
       return this;
@@ -1304,7 +1306,7 @@ public final class Assert {
      * @return The current asserter
      * @throws MissingMandatoryValueException
      *           if input or other are null
-     * @throws NotBeforeTimeException
+     * @throws fr.codecake.ecom.shared.domain.NotBeforeTimeException
      *           if the input instant is not before the other instant
      */
     public InstantAsserter beforeOrAt(Instant other) {

@@ -1,7 +1,7 @@
 package fr.codecake.ecom.shared.authentification.domain;
 
 // Importation des classes nécessaires
-import fr.codecake.ecom.shared.error.domain.Assert; //Importe la classe Assert, utilisée pour vérifier que les valeurs ne sont pas nulles.
+import fr.codecake.ecom.shared.error.domain.Assert; //Importe la classe Assert.java, utilisée pour vérifier que les valeurs ne sont pas nulles.
 import java.util.Collections; //Importe Collections, qui offre des méthodes utilitaires pour manipuler les collections (ex. rendre un ensemble immuable).
 import java.util.Set; //Importe l'interface Set, qui représente un ensemble de rôles uniques.
 import java.util.stream.Stream; //Importe Stream, qui est utilisé pour manipuler les rôles sous forme de flux.

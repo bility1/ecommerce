@@ -1,7 +1,7 @@
 package fr.codecake.ecom.shared.authentification.domain;
 
 // Importation des classes nécessaires
-import fr.codecake.ecom.shared.error.domain.Assert;//Importe la classe Assert, utilisée pour valider que les valeurs ne sont pas vides ou nulles.
+import fr.codecake.ecom.shared.error.domain.Assert;//Importe la classe Assert.java, utilisée pour valider que les valeurs ne sont pas vides ou nulles.
 import java.util.Map; //Importe Map, utilisé pour stocker les rôles avec leurs clés associées.
 import java.util.function.Function;//Importe Function, utilisé pour convertir un rôle en une clé lors de la construction de la Map.
 import java.util.stream.Collectors;//Importe Collectors, utilisé pour collecter les éléments d'un flux dans une Map

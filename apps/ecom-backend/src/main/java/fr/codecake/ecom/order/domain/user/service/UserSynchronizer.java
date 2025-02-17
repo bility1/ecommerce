@@ -4,6 +4,7 @@ import fr.codecake.ecom.order.domain.user.aggregate.User;
 import fr.codecake.ecom.order.domain.user.repository.UserRepository;
 import fr.codecake.ecom.order.domain.user.vo.UserAddressToUpdate;
 import fr.codecake.ecom.order.infrastructure.secondary.service.kinde.KindeService;
+import fr.codecake.ecom.shared.authentification.application.AuthenticatedUser;
 import org.springframework.security.oauth2.jwt.Jwt;
 
 import java.time.Instant;

@@ -1,4 +1,4 @@
-package fr.codecake.ecom.shared.authentication.infrastructure.primary;
+package fr.codecake.ecom.shared.authentification.infrastructure.primary;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

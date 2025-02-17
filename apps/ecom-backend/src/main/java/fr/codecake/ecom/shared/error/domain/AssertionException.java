@@ -25,7 +25,7 @@ public abstract class AssertionException extends RuntimeException {
   /**
    * Méthode abstraite devant être implémentée par les sous-classes.
    * Elle retourne le type d'erreur associé à l'exception.
-   * @return Le type d'erreur sous forme d'AssertionErrorType.
+   * @return Le type d'erreur sous forme d'AssertionErrorType.java.
    */
   public abstract AssertionErrorType type();
 
