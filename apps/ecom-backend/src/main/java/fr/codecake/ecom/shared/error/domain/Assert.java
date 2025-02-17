@@ -1,6 +1,6 @@
 package fr.codecake.ecom.shared.error.domain;
 
-import fr.codecake.ecom.shared.domain.NotBeforeTimeException;
+import fr.codecake.ecom.shared.error.domain.NotBeforeTimeException;
 
 import java.math.BigDecimal;
 import java.time.Instant;
@@ -1292,7 +1292,7 @@ public final class Assert {
       Assert.notNull(OTHER_FIELD_NAME, other);
 
       if (value.compareTo(other) >= 0) {
-        throw fr.codecake.ecom.shared.domain.NotBeforeTimeException.strictlyNotBefore().value(value).field(field).other(other);
+        throw NotBeforeTimeException.strictlyNotBefore().value(value).field(field).other(other);
       }
 
       return this;
