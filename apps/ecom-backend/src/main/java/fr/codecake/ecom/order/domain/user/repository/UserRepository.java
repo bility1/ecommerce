@@ -10,6 +10,9 @@ import java.util.Optional;
 
 public interface UserRepository {
   void save(User user);
+
+  void save(User user);
+
   Optional<User> get (UserPublicId userPublicId);
 
   Optional<User> getOneByEmail(UserEmail userEmail);
