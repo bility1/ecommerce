@@ -10,10 +10,16 @@ spring:
   threads:
     virtual:
       enabled: true
+  profiles:
+    active: local
   datasource:
+    url: jdbc:postgresql://localhost:5432/ecommerce_yt  # URL de connexion à PostgreSQL
+    username: codecake  # Remplace par ton utilisateur PostgreSQL
+    password: codecake  # Remplace par ton mot de passe
     hikari:
       poolName: Hikari
       auto-commit: false
+      maximum-pool-size: 10  # Limite le pool de connexions
     driver-class-name: org.postgresql.Driver
     type: com.zaxxer.hikari.HikariDataSource
   data:
@@ -41,17 +47,17 @@ spring:
         implicit-strategy: org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy
         physical-strategy: org.hibernate.boot.model.naming.CamelCaseToUnderscoresNamingStrategy
     open-in-view: false
+    database-platform: org.hibernate.dialect.PostgreSQLDialect  # Ajout pour PostgreSQL
   liquibase:
     change-log: classpath:db/changelog/master.xml
     default-schema: ecommerce_yt
     contexts: dev
-  #    drop-first: true
   security:
     oauth2:
       resourceserver:
         jwt:
-          issuer-uri: https://codecake.kinde.com
-          jwk-set-uri: https://codecake.kinde.com/.well-known/jwks
+          issuer-uri: https://soudou.kinde.com
+          jwk-set-uri: https://soudou.kinde.com/.well-known/jwks
           audiences: http://localhost:8080/api
   devtools:
     restart:
@@ -77,12 +83,10 @@ application:
     allow-credentials: false
     max-age: 300
   kinde:
-    api: https://codecake.kinde.com
+    api: https://soudou.kinde.com
     client-id: ${KINDE_CLIENT_ID}
     client-secret: ${KINDE_CLIENT_SECRET}
-    audience: https://codecake.kinde.com/api
+    audience: https://soudou.kinde.com/api
   stripe:
     api-key: ${STRIPE_API_KEY}
     webhook-secret: ${STRIPE_WEBHOOK_SECRET}
-
-

@@ -4,7 +4,6 @@ import fr.codecake.ecom.order.domain.user.aggregate.User;
 import fr.codecake.ecom.order.domain.user.repository.UserRepository;
 import fr.codecake.ecom.order.domain.user.service.UserReader;
 import fr.codecake.ecom.order.domain.user.service.UserSynchronizer;
-import fr.codecake.ecom.order.domain.user.vo.UserAddress;
 import fr.codecake.ecom.order.domain.user.vo.UserAddressToUpdate;
 import fr.codecake.ecom.order.domain.user.vo.UserEmail;
 import fr.codecake.ecom.order.infrastructure.secondary.service.kinde.KindeService;
@@ -14,12 +13,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
-public class UserApplicationService {
+public class UsersApplicationService {
 
   private final UserSynchronizer userSynchronizer;
   private final UserReader userReader;
 
-  public UserApplicationService(UserRepository userRepository, KindeService kindeService) {
+  public UsersApplicationService(UserRepository userRepository, KindeService kindeService) {
     this.userSynchronizer = new UserSynchronizer(userRepository, kindeService);
     this.userReader = new UserReader(userRepository);
   }
