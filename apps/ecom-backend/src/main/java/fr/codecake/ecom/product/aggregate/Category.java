@@ -1,0 +1,50 @@
+package fr.codecake.ecom.product.aggregate;
+
+import fr.codecake.ecom.product.vo.CategoryName;
+import fr.codecake.ecom.product.vo.PublicId;
+import fr.codecake.ecom.shared.error.domain.Assert;
+import org.jilt.Builder;
+
+import java.util.UUID;
+
+@Builder
+public class Category {
+
+  private final CategoryName name;
+  private Long dbId;
+  private PublicId publicId;
+
+  public Category(CategoryName name, Long dbId, PublicId publicId) {
+    assertMandatoryFields(name);
+    this.name = name;
+    this.dbId = dbId;
+    this.publicId = publicId;
+  }
+
+  public void initDefaultFields(){
+    this.publicId = new PublicId(UUID.randomUUID());
+  }
+  private void assertMandatoryFields(CategoryName categoryName){
+    Assert.notNull("name", name);
+  }
+
+  public CategoryName getName() {
+    return name;
+  }
+
+  public Long getDbId() {
+    return dbId;
+  }
+
+  public void setDbId(Long dbId) {
+    this.dbId = dbId;
+  }
+
+  public PublicId getPublicId() {
+    return publicId;
+  }
+
+  public void setPublicId(PublicId publicId) {
+    this.publicId = publicId;
+  }
+}

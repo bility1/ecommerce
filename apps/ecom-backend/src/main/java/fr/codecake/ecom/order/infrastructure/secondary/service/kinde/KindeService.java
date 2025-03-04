@@ -53,7 +53,7 @@ public class KindeService {
       // Construction de la requête POST pour obtenir un token d'accès
       ResponseEntity<KindeAccessToken> accessToken =
         restClient.post()
-          .uri(URI.create("/oauth/token")) // Endpoint pour récupérer le token
+          .uri(apiUrl+"/oauth/token") // Endpoint pour récupérer le token
           .body("grant_type=client_credentials&audience=" + URLEncoder.encode(audience, StandardCharsets.UTF_8)) // Paramètres OAuth
           .accept(MediaType.APPLICATION_JSON) // Accepte du JSON en réponse
           .contentType(MediaType.APPLICATION_FORM_URLENCODED) // Spécifie le format de l'envoi
