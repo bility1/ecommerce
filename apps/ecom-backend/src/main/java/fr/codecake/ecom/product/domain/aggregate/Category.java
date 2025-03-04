@@ -1,7 +1,7 @@
-package fr.codecake.ecom.product.aggregate;
+package fr.codecake.ecom.product.domain.aggregate;
 
-import fr.codecake.ecom.product.vo.CategoryName;
-import fr.codecake.ecom.product.vo.PublicId;
+import fr.codecake.ecom.product.domain.vo.CategoryName;
+import fr.codecake.ecom.product.domain.vo.PublicId;
 import fr.codecake.ecom.shared.error.domain.Assert;
 import org.jilt.Builder;
 

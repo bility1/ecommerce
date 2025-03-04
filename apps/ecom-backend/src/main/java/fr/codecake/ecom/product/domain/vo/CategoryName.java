@@ -1,11 +1,10 @@
-package fr.codecake.ecom.product.vo;
+package fr.codecake.ecom.product.domain.vo;
 
 import fr.codecake.ecom.shared.error.domain.Assert;
 
-public record ProductBrand(String value) {
+public record CategoryName(String value) {
 
-  public ProductBrand{
+  public CategoryName {
     Assert.field("value", value).notNull().minLength(3);
   }
-
 }

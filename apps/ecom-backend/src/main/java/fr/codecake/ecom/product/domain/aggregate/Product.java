@@ -1,6 +1,6 @@
-package fr.codecake.ecom.product.aggregate;
+package fr.codecake.ecom.product.domain.aggregate;
 
-import fr.codecake.ecom.product.vo.*;
+import fr.codecake.ecom.product.domain.vo.*;
 import fr.codecake.ecom.shared.error.domain.Assert;
 import org.jilt.Builder;
 
@@ -62,7 +62,7 @@ public class Product {
     return productBrand;
   }
 
-  public ProductColor getProductColor() {
+  public ProductColor getColor() {
     return productColor;
   }
 
@@ -73,6 +73,7 @@ public class Product {
   public ProductName getName() {
     return name;
   }
+
 
   public ProductPrice getPrice() {
     return price;
@@ -100,6 +101,10 @@ public class Product {
 
   public PublicId getPublicId() {
     return publicId;
+  }
+
+  public void setFeatured(boolean featured) {
+    this.featured = featured;
   }
 
   public int getNbInStock() {

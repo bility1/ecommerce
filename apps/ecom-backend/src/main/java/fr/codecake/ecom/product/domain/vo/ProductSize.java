@@ -1,4 +1,4 @@
-package fr.codecake.ecom.product.vo;
+package fr.codecake.ecom.product.domain.vo;
 
 public enum ProductSize {
 

@@ -1,7 +1,7 @@
-package fr.codecake.ecom.product.repository;
+package fr.codecake.ecom.product.domain.repository;
 
-import fr.codecake.ecom.product.aggregate.Product;
-import fr.codecake.ecom.product.vo.PublicId;
+import fr.codecake.ecom.product.domain.aggregate.Product;
+import fr.codecake.ecom.product.domain.vo.PublicId;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 

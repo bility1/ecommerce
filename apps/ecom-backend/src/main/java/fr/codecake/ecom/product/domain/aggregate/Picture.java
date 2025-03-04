@@ -1,4 +1,4 @@
-package fr.codecake.ecom.product.aggregate;
+package fr.codecake.ecom.product.domain.aggregate;
 
 import fr.codecake.ecom.shared.error.domain.Assert;
 import org.jilt.Builder;
